@@ -64,12 +64,9 @@ module AoC01 =
     let run (path:string) =
         let res = fileToLines path |> Seq.map GameParser.parseLine |> Seq.toList
         let validGame = GameRound.empty.Add(Red, 12).Add(Green, 13).Add(Blue, 14)
-        
-        
-        //let res = res |> Seq.filter (fun m -> m.Rounds |> Seq.forall(fun g -> g[Blue] <= validGame[Blue] && g[Green] <= validGame[Green] && g[Red] <= validGame[Red]))
+        let res = res |> Seq.filter (fun m -> m.Rounds |> Seq.forall(fun g -> g[Blue] <= validGame[Blue] && g[Green] <= validGame[Green] && g[Red] <= validGame[Red]))
         // 
-        for r in res
-            do printfn "%A" r
+        //for r in res
+        //   do printfn "%A" r
             
-        //res |> Seq.map (fun g -> g.Id) |> Seq.sum
-        res |> Seq.map (fun g -> g.Power) |> Seq.sum
+        res |> Seq.map (fun g -> g.Id) |> Seq.sum

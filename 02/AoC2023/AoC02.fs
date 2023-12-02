@@ -6,4 +6,5 @@ module AoC02 =
         |> seq
         
     let run (path:string) =
-        0 
+        let res = fileToLines path |> Seq.map GameParser.parseLine |> Seq.toList
+        res |> Seq.map (fun g -> g.Power) |> Seq.sum
