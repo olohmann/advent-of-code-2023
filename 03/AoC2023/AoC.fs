@@ -72,7 +72,11 @@ module AoC =
         let mutable res = List<int>.Empty
         
         for g in gears do
-            let ns = numbers |> Seq.filter(fun n -> (n |> Seq.exists (fun p -> abs (p.x - g.x) <= 1 && abs (p.y - g.y) <= 1 ))) |> Seq.map (fun s -> numberSequenceToInt(arr, s)) |> Seq.toArray
+            let ns = numbers |>
+                     Seq.filter(fun n -> (n |> Seq.exists (fun p -> abs (p.x - g.x) <= 1 && abs (p.y - g.y) <= 1 ))) |>
+                     Seq.map (fun s -> numberSequenceToInt(arr, s)) |>
+                     Seq.toArray
+                     
             if ns.Length >= 2 then
                let r = Seq.fold (fun acc x -> acc * x) 1 ns
                res <- res @ [r]
