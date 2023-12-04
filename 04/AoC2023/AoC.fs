@@ -26,14 +26,9 @@ module AoC =
         
         { Id = id; WinningNumbers = winningNumbers; MyNumbers = myNumbers; MyWinningSubset = myWinningSubset; Count = 1 }
     
-    let rec calculateScore (wins: int, acc: int): int =
-        if wins = 0 then acc
-        elif acc = 0 then calculateScore (wins - 1, 1)
-        else calculateScore (wins - 1, acc * 2)
-    
     let solvePart1 (lines: seq<string>): int =
         let cards = lines |> Seq.map parseCard |> Seq.toList
-        let res = cards |> Seq.map (fun c -> calculateScore(c.MyWinningSubset.Length, 0)) |> Seq.sum
+        let res = cards |> Seq.map (fun c -> pown 2 (c.MyWinningSubset.Length - 1)) |> Seq.sum
         res
         
     let solvePart2 (lines: seq<string>): int =
@@ -43,7 +38,6 @@ module AoC =
                 for _ in [1 .. cards[i].Count] do
                     cards[i + j].Count <- cards[i + j].Count + 1
                 
-        printfn "%A" cards
         let res = cards |> Seq.sumBy (fun c -> c.Count)
         res
         
