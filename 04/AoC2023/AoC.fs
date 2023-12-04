@@ -17,7 +17,6 @@ module AoC =
             (replaceMultipleWhitespaces line).Replace("Card", "").Trim().Split(":")
 
         let id = int tmpLine.[0] |> int
-
         let numbers = tmpLine.[1].Split("|")
         let winningNumbers = numbers.[0].Trim().Split(" ") |> Array.map int |> List.ofArray
         let myNumbers = numbers.[1].Trim().Split(" ") |> Array.map int |> List.ofArray
